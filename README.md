@@ -16,6 +16,21 @@ make test              # go vet + unit tests
 make db-down           # stop Postgres
 ```
 
+### Run with Docker
+
+Only Docker is needed; this builds the API image and starts it with Postgres.
+
+```sh
+make up                # API on http://localhost:3000
+make down              # stop everything
+```
+
+To push the image to a registry (Docker Hub shown; build for the server's platform):
+
+```sh
+docker buildx build --platform linux/amd64 -t <user>/study-space-api:latest --push .
+```
+
 ## Endpoints
 
 All responses are JSON. Errors look like `{"error": "..."}`; validation errors also include a `fields` object keyed by input name.
